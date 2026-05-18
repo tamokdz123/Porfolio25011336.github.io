@@ -1,1 +1,423 @@
-# Porfolio25011336
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Porfolio – Trần Ngọc Tâm - 25011336</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c1:#6C63FF;--c2:#FF6584;--c3:#43D9AD;--c4:#FFB830;--c5:#3B82F6;
+  --bg:#F0F4FF;--card:#fff;--txt:#1a1a2e;--muted:#6b7280;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+.app{max-width:700px;margin:0 auto;padding:1.25rem}
+
+/* Header */
+.header{display:flex;flex-direction:column;align-items:stretch;gap:0.85rem;margin-bottom:1.5rem;padding:1rem 1.25rem;background:var(--card);border-radius:20px;border:0.5px solid rgba(108,99,255,.2);position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(108,99,255,.08)}
+.header::before{content:'';position:absolute;right:-20px;top:-20px;width:140px;height:140px;background:radial-gradient(circle,rgba(108,99,255,.1) 0%,transparent 70%)}
+.header-top{display:flex;align-items:center;gap:12px}
+.logo{width:52px;height:52px;border-radius:16px;flex-shrink:0;box-shadow:0 4px 12px rgba(108,99,255,.3);overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fff}
+.logo img,
+.logo svg{width:100%;height:100%;display:block}
+.header-note{padding:0.75rem 1rem;background:rgba(108,99,255,.05);border-radius:16px;border:0.5px solid rgba(108,99,255,.12);font-size:14px;color:var(--muted);text-align:center;line-height:1.5}
+.header h1{font-size:22px;font-weight:900;color:var(--c1);letter-spacing:-.3px}
+.header p{font-size:13px;color:var(--muted);font-weight:600}
+.xp-bar-wrap{margin-left:auto;text-align:right;flex-shrink:0}
+.xp-label{font-size:11px;font-weight:800;color:var(--c1);margin-bottom:4px}
+.xp-bar{width:90px;height:8px;background:#e5e7eb;border-radius:99px;overflow:hidden}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--c1),#9c5cf9);border-radius:99px;width:0;transition:width 1s cubic-bezier(.34,1.56,.64,1)}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;margin-bottom:1rem;background:var(--card);padding:6px;border-radius:16px;border:0.5px solid rgba(0,0,0,.06);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.tab{flex:1;padding:10px 4px;border:none;border-radius:11px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}
+.tab.active{background:var(--c1);color:#fff;box-shadow:0 4px 12px rgba(108,99,255,.3)}
+
+/* Sections */
+.section{display:none;animation:fadeIn .25s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* Home */
+.profile-card{background:var(--card);border-radius:20px;padding:1.4rem;box-shadow:0 8px 22px rgba(108,99,255,.1);border:0.5px solid rgba(108,99,255,.12);margin-bottom:1rem}
+.profile-card h2{font-size:20px;font-weight:900;color:var(--c1);margin-bottom:1rem}
+.profile-item{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-bottom:1px solid rgba(108,99,255,.08)}
+.profile-item:last-child{border-bottom:none}
+.profile-label{font-size:14px;font-weight:800;color:var(--txt);text-transform:uppercase;letter-spacing:.4px}
+.profile-value{font-size:15px;font-weight:700;color:var(--muted);max-width:60%;text-align:right}
+.profile-item.long{display:block;padding:.45rem 0}
+.profile-item.long .profile-value{display:block;max-width:100%;text-align:left;margin-top:.15rem;line-height:1.7}
+
+.streak-row{display:flex;gap:10px;margin-bottom:1rem}
+.streak-card{flex:1;background:var(--card);border-radius:16px;padding:1rem;border:0.5px solid rgba(0,0,0,.06);text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.streak-num{font-size:24px;font-weight:900;color:var(--c1)}
+.streak-lbl{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px}
+
+.topics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1rem}
+.topic-card{background:var(--card);border-radius:18px;padding:1.1rem;border:0.5px solid rgba(0,0,0,.06);cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.topic-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.1)}
+.topic-card::after{content:'';position:absolute;bottom:-25px;right:-25px;width:80px;height:80px;border-radius:50%;opacity:.12}
+.topic-card[data-c="purple"]::after{background:#6C63FF}
+.topic-card[data-c="pink"]::after{background:#FF6584}
+.topic-card[data-c="teal"]::after{background:#43D9AD}
+.topic-card[data-c="amber"]::after{background:#FFB830}
+.topic-icon{font-size:30px;margin-bottom:8px;display:block}
+.topic-name{font-size:14px;font-weight:800;margin-bottom:4px}
+.topic-desc{font-size:11px;color:var(--muted);font-weight:600}
+.topic-progress{height:5px;background:#f0f0f0;border-radius:99px;margin-top:12px;overflow:hidden}
+.topic-bar{height:100%;border-radius:99px}
+.topic-card[data-c="purple"] .topic-name{color:#6C63FF}
+.topic-card[data-c="purple"] .topic-bar{background:linear-gradient(90deg,#6C63FF,#9c5cf9)}
+.topic-card[data-c="pink"] .topic-name{color:#FF6584}
+.topic-card[data-c="pink"] .topic-bar{background:linear-gradient(90deg,#FF6584,#ff8fa3)}
+.topic-card[data-c="teal"] .topic-name{color:#0d9373}
+.topic-card[data-c="teal"] .topic-bar{background:linear-gradient(90deg,#43D9AD,#6ee7c7)}
+.topic-card[data-c="amber"] .topic-name{color:#d97706}
+.topic-card[data-c="amber"] .topic-bar{background:linear-gradient(90deg,#FFB830,#ffd166)}
+
+.recent-card{background:var(--card);border-radius:16px;padding:1.1rem 1.25rem;border:0.5px solid rgba(0,0,0,.06);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.recent-title{font-size:14px;font-weight:800;color:var(--c1);margin-bottom:.85rem}
+.recent-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.5px solid #f0f0f0}
+.recent-item:last-child{border-bottom:none;padding-bottom:0}
+.recent-icon{font-size:20px;width:36px;height:36px;background:#f3f4f6;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.recent-text{flex:1;font-size:13px;font-weight:700}
+.recent-time{font-size:11px;color:var(--muted);font-weight:600}
+
+/* Quiz */
+.quiz-card{background:var(--card);border-radius:22px;padding:1.5rem;border:0.5px solid rgba(108,99,255,.15);box-shadow:0 4px 20px rgba(108,99,255,.08)}
+.quiz-meta{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.quiz-badge{background:rgba(108,99,255,.1);color:var(--c1);font-size:11px;font-weight:800;padding:5px 12px;border-radius:99px}
+.quiz-progress{flex:1;height:6px;background:#e5e7eb;border-radius:99px;overflow:hidden}
+.quiz-prog-fill{height:100%;background:linear-gradient(90deg,var(--c1),#9c5cf9);border-radius:99px;transition:width .5s ease}
+.quiz-score{font-size:13px;font-weight:800;color:var(--c4)}
+.quiz-q{font-size:20px;font-weight:900;margin-bottom:.5rem;line-height:1.4;color:var(--txt)}
+.quiz-sub{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:1.25rem}
+.quiz-hint{background:rgba(67,217,173,.1);color:#0d9373;font-size:13px;font-weight:700;padding:10px 14px;border-radius:12px;margin-bottom:1.25rem;display:none;border:1px solid rgba(67,217,173,.3)}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem}
+.opt{border:2px solid #e5e7eb;background:var(--card);border-radius:14px;padding:.9rem;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;color:var(--txt);display:flex;align-items:center;gap:10px;text-align:left}
+.opt:hover:not(:disabled){border-color:var(--c1);color:var(--c1);background:rgba(108,99,255,.04);transform:translateY(-1px)}
+.opt.correct{border-color:#43D9AD;background:rgba(67,217,173,.1);color:#0d9373}
+.opt.wrong{border-color:#FF6584;background:rgba(255,101,132,.08);color:#c0384f}
+.opt-letter{width:26px;height:26px;border-radius:8px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;transition:background .2s}
+.opt.correct .opt-letter{background:rgba(67,217,173,.3)}
+.opt.wrong .opt-letter{background:rgba(255,101,132,.2)}
+.quiz-actions{display:flex;gap:8px}
+.btn-hint{flex:1;padding:.75rem;border:2px solid #e5e7eb;background:transparent;border-radius:12px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;color:var(--muted);transition:all .2s}
+.btn-hint:hover:not(:disabled){border-color:var(--c4);color:var(--c4);background:rgba(255,184,48,.06)}
+.btn-hint:disabled{opacity:.5;cursor:not-allowed}
+.btn-next{flex:2;padding:.75rem;border:none;background:linear-gradient(135deg,var(--c1),#9c5cf9);border-radius:12px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;color:#fff;transition:all .2s;display:none;box-shadow:0 4px 12px rgba(108,99,255,.3)}
+.btn-next:hover{opacity:.9;transform:translateY(-1px)}
+
+.result-card{background:var(--card);border-radius:22px;padding:2rem;border:0.5px solid rgba(67,217,173,.2);text-align:center;display:none;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.result-emoji{font-size:60px;margin-bottom:.75rem;display:block}
+.result-title{font-size:24px;font-weight:900;color:var(--c1);margin-bottom:.4rem}
+.result-sub{font-size:14px;color:var(--muted);font-weight:600;margin-bottom:1.5rem}
+.score-ring{width:100px;height:100px;margin:0 auto 1.5rem;position:relative}
+.score-ring svg{transform:rotate(-90deg)}
+.score-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:22px;font-weight:900;color:var(--c1)}
+.btn-retry{padding:.85rem 2.5rem;border:none;background:linear-gradient(135deg,var(--c1),#9c5cf9);border-radius:14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;color:#fff;box-shadow:0 4px 16px rgba(108,99,255,.3);transition:all .2s}
+.btn-retry:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(108,99,255,.35)}
+
+/* Visual */
+.viz-area{background:var(--card);border-radius:20px;padding:1.35rem;border:0.5px solid rgba(0,0,0,.06);margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.viz-title{font-size:15px;font-weight:800;color:var(--c1);margin-bottom:.85rem}
+.table-grid{display:grid;grid-template-columns:repeat(11,1fr);gap:3px}
+.cell{aspect-ratio:1;background:#f3f4f6;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .25s}
+.cell.hi{background:var(--c1);color:#fff;transform:scale(1.1);z-index:1;box-shadow:0 2px 8px rgba(108,99,255,.3)}
+.cell.header{background:#e8e5ff;color:var(--c1);font-size:9px;font-weight:900}
+.viz-controls{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem}
+.viz-btn{padding:5px 13px;border:2px solid #e5e7eb;background:transparent;border-radius:99px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;color:var(--muted);transition:all .2s}
+.viz-btn:hover,.viz-btn.active{border-color:var(--c1);color:var(--c1);background:rgba(108,99,255,.08)}
+
+.formula-box{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.formula-chip{background:rgba(108,99,255,.08);color:var(--c1);border-radius:12px;padding:7px 14px;font-size:12px;font-weight:800;cursor:pointer;transition:all .2s;border:2px solid transparent}
+.formula-chip:hover,.formula-chip.active{border-color:var(--c1);background:rgba(108,99,255,.16)}
+.formula-display{min-height:70px;display:flex;align-items:center;justify-content:center;background:#f8f7ff;border-radius:14px;padding:1rem;text-align:center}
+.formula-name{font-size:16px;font-weight:900;color:var(--c1);margin-bottom:4px}
+.formula-ex{font-size:13px;color:var(--muted);font-weight:600}
+
+.speed-q{font-size:36px;font-weight:900;text-align:center;padding:1rem;color:var(--c1)}
+.speed-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.speed-btn{padding:.85rem;border:2px solid #e5e7eb;background:var(--card);border-radius:14px;font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;cursor:pointer;transition:all .2s;color:var(--txt)}
+.speed-btn:hover{border-color:var(--c1);background:rgba(108,99,255,.04);transform:scale(1.02)}
+.speed-btn.correct-ans{border-color:#43D9AD;background:rgba(67,217,173,.1);color:#0d9373}
+.speed-btn.wrong-ans{border-color:#FF6584;background:rgba(255,101,132,.08);color:#c0384f}
+.speed-msg{text-align:center;font-size:14px;font-weight:800;min-height:24px;transition:all .2s}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <div class="logo">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="UEd Logo">
+          <rect width="120" height="120" fill="transparent"/>
+          <text x="60" y="70" text-anchor="middle" fill="#24A17B" font-family="Arial, sans-serif" font-size="44" font-weight="900">UEd</text>
+        </svg>
+      </div>
+      <div>
+        <h1>Digital Porfolio</h1>
+        <p>Trần Ngọc Tâm - 25011336</p>
+      </div>
+    </div>
+    <div class="header-note">Đại học Giáo dục – ĐHQG Hà Nội</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('home',this)">ℹ️ Giới thiệu</button>
+    <button class="tab" onclick="switchTab('quiz',this)">📁 Dự án</button>
+    <button class="tab" onclick="switchTab('visual',this)">📈 Tổng kết</button>
+  </div>
+
+  <!-- HOME -->
+  <div id="home" class="section active">
+    <div class="profile-card">
+      <h2>Thông tin cá nhân</h2>
+      <div class="profile-item"><span class="profile-label">Họ và tên</span><span class="profile-value">Trần Ngọc Tâm</span></div>
+      <div class="profile-item"><span class="profile-label">Mã sinh viên</span><span class="profile-value">25011336</span></div>
+      <div class="profile-item"><span class="profile-label">Ngày tháng năm sinh</span><span class="profile-value">08/09/2007</span></div>
+      <div class="profile-item"><span class="profile-label">Khoa</span><span class="profile-value">Khoa học Giáo dục và Khác</span></div>
+      <div class="profile-item"><span class="profile-label">Sở thích</span><span class="profile-value">Nấu ăn, nghe nhạc</span></div>
+    </div>
+    <div class="profile-card">
+      <h2>Mục tiêu học tập và định hướng tương lai</h2>
+      <div class="profile-item long"><span class="profile-label">Mục tiêu học tập</span><span class="profile-value">Sau một năm học tập và hoàn toàn thích nghi với môi trường đại học, mục tiêu hiện tại của em là duy trì và nâng cao phong độ học tập, phấn đấu đạt kết quả các môn cơ sở ngành từ Khá/Giỏi trở lên. Em đang tiếp tục đẩy mạnh việc trau dồi năng lực ngoại ngữ, thành thạo tin học văn phòng và tích cực tham gia các hoạt động ngoại khóa để hoàn thiện các kỹ năng mềm như làm việc nhóm, giao tiếp và quản lý thời gian.</span></div>
+      <div class="profile-item long"><span class="profile-label">Định hướng tương lai</span><span class="profile-value">Em hướng tới việc tập trung chuyên sâu vào kiến thức chuyên ngành trong những năm tới để tốt nghiệp đúng hạn với tấm bằng ưu tú. Đồng thời, em dự định tìm kiếm các cơ hội thực tập, tiếp cận môi trường doanh nghiệp sớm từ năm thứ ba để tích lũy kinh nghiệm thực tế. Đây sẽ là bước đệm vững chắc giúp em trở thành một nhân sự chuyên nghiệp, nhạy bén và tự tin gia nhập thị trường lao động sau khi ra trường.</span></div>
+    </div>
+    <div class="profile-card">
+      <h2>Mục tiêu của Porfolio</h2>
+      <div class="profile-item long"><span class="profile-value">Portfolio này được xây dựng với mục tiêu ghi lại trọn vẹn hành trình học tập và hoàn thiện các kỹ năng số thiết yếu của em sau năm học đầu tiên tại trường đại học. Đây không chỉ là nơi lưu trữ các sản phẩm cá nhân để dễ dàng truy cập và chia sẻ, mà còn là minh chứng rõ ràng cho việc làm chủ các công cụ công nghệ phục vụ học tập. Cụ thể, portfolio thể hiện năng lực của em qua quy trình thực hiện các kỹ năng cốt lõi: từ việc tối ưu hóa quản lý tệp tin, khai thác và đánh giá nguồn thông tin học thuật tin cậy, đến việc ứng dụng AI một cách có trách nhiệm và hiệu quả (thông qua kỹ nghệ viết prompt, hỗ trợ sáng tạo nội dung số). Đồng thời, đây cũng là nơi minh chứng cho khả năng hợp tác, phối hợp trực tuyến trong các dự án nhóm. Thông qua những kết quả thực tế được hệ thống hóa tại đây, mục tiêu tiếp theo của em là tiếp tục duy trì phong độ học tập, vững vàng bước vào các môn chuyên ngành và không ngừng nâng cao năng lực công nghệ. Portfolio này chính là bước đệm sớm giúp em định vị bản thân, sẵn sàng tìm kiếm các cơ hội thực tập thực tế từ năm thứ ba, hướng tới mục tiêu trở thành một nhân sự chuyên nghiệp, nhạy bén và có tư duy số vững vàng sau khi tốt nghiệp.</span></div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" class="section">
+  </div>
+
+  <!-- VISUAL -->
+  <div id="visual" class="section">
+  </div>
+</div>
+
+<script>
+// ── XP bar animation on load ─
+setTimeout(() => {
+  const xpFill = document.getElementById('xpFill');
+  if (xpFill) xpFill.style.width = '62%';
+}, 400);
+
+// ── Tab switching ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'visual' && document.getElementById('multControls')) { buildMultTable(activeM); buildFormulas(); buildSpeedQ(); }
+  if (id === 'quiz' && document.getElementById('quizMain')) { initQuiz(); }
+}
+function goQuiz() {
+  document.querySelectorAll('.tab')[1].click();
+}
+
+// ── Quiz ──
+const questions = [
+  { q: '15 + 28 = ?', opts: [43, 42, 44, 41], ans: 0, hint: 'Cộng hàng đơn vị trước: 5 + 8 = 13, nhớ 1' },
+  { q: '7 × 8 = ?', opts: [54, 56, 63, 48], ans: 1, hint: 'Nhớ: "7 lần 8 là 56"' },
+  { q: '144 ÷ 12 = ?', opts: [11, 13, 12, 14], ans: 2, hint: '12 × ? = 144 → 12 × 12 = 144' },
+  { q: '¾ + ¼ = ?', opts: ['½', '1', '1½', '¾'], ans: 1, hint: 'Mẫu bằng nhau: tử 3+1=4, mẫu 4 → 4/4 = 1' },
+  { q: 'Hình vuông cạnh 6 cm, diện tích = ?', opts: ['24 cm²', '36 cm²', '12 cm²', '30 cm²'], ans: 1, hint: 'Diện tích hình vuông = cạnh × cạnh = 6 × 6' },
+];
+let qIdx = 0, score = 0, answered = false;
+
+function initQuiz() {
+  qIdx = 0; score = 0; answered = false;
+  document.getElementById('quizMain').style.display = 'block';
+  document.getElementById('resultCard').style.display = 'none';
+  showQ();
+}
+
+function showQ() {
+  const q = questions[qIdx];
+  document.getElementById('qBadge').textContent = `Câu ${qIdx + 1} / ${questions.length}`;
+  document.getElementById('qProg').style.width = `${((qIdx + 1) / questions.length) * 100}%`;
+  document.getElementById('qScore').textContent = `${score} ⭐`;
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('qHint').style.display = 'none';
+  document.getElementById('btnNext').style.display = 'none';
+  document.getElementById('btnHint').disabled = false;
+  answered = false;
+  const oc = document.getElementById('qOpts');
+  oc.innerHTML = '';
+  ['A', 'B', 'C', 'D'].forEach((letter, i) => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.innerHTML = `<span class="opt-letter">${letter}</span>${q.opts[i]}`;
+    b.onclick = () => selectOpt(i, b);
+    oc.appendChild(b);
+  });
+}
+
+function selectOpt(i, btn) {
+  if (answered) return;
+  answered = true;
+  const q = questions[qIdx];
+  document.querySelectorAll('.opt').forEach((b, j) => {
+    b.disabled = true;
+    if (j === q.ans) b.classList.add('correct');
+    else if (j === i && i !== q.ans) b.classList.add('wrong');
+  });
+  if (i === q.ans) score++;
+  document.getElementById('btnNext').style.display = 'block';
+}
+
+function showHint() {
+  const q = questions[qIdx];
+  const h = document.getElementById('qHint');
+  h.textContent = '💡 ' + q.hint;
+  h.style.display = 'block';
+  document.getElementById('btnHint').disabled = true;
+}
+
+function nextQ() {
+  qIdx++;
+  if (qIdx < questions.length) { showQ(); }
+  else { showResult(); }
+}
+
+function showResult() {
+  document.getElementById('quizMain').style.display = 'none';
+  const rc = document.getElementById('resultCard');
+  rc.style.display = 'block';
+  const pct = Math.round((score / questions.length) * 100);
+  document.getElementById('rEmoji').textContent = pct >= 80 ? '🎉' : pct >= 60 ? '👍' : '💪';
+  document.getElementById('rTitle').textContent = pct >= 80 ? 'Xuất sắc!' : pct >= 60 ? 'Tốt lắm!' : 'Cố lên nhé!';
+  document.getElementById('rSub').textContent = `Bạn đã trả lời đúng ${score}/${questions.length} câu`;
+  document.getElementById('scoreText').textContent = pct + '%';
+  const circumference = 2 * Math.PI * 40;
+  const offset = circumference - (pct / 100) * circumference;
+  setTimeout(() => { document.getElementById('scoreCircle').style.strokeDashoffset = offset; }, 150);
+}
+
+function restartQuiz() { initQuiz(); }
+
+// ── Multiplication Table ──
+let activeM = 2;
+function buildMultTable(m) {
+  activeM = m;
+  document.querySelectorAll('.viz-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent == m);
+  });
+  const tbl = document.getElementById('multTable');
+  tbl.innerHTML = '';
+  for (let r = 0; r <= 10; r++) {
+    for (let c = 0; c <= 10; c++) {
+      const d = document.createElement('div');
+      d.className = 'cell';
+      if (r === 0 && c === 0) { d.textContent = '×'; d.classList.add('header'); }
+      else if (r === 0) { d.textContent = c; d.classList.add('header'); }
+      else if (c === 0) { d.textContent = r; d.classList.add('header'); }
+      else {
+        d.textContent = r * c;
+        if (r === m || c === m) d.classList.add('hi');
+      }
+      tbl.appendChild(d);
+    }
+  }
+}
+
+function buildControls() {
+  const cc = document.getElementById('multControls');
+  for (let i = 2; i <= 9; i++) {
+    const b = document.createElement('button');
+    b.className = 'viz-btn' + (i === 2 ? ' active' : '');
+    b.textContent = i;
+    b.onclick = () => buildMultTable(i);
+    cc.appendChild(b);
+  }
+}
+
+// ── Formulas ──
+const formulas = [
+  { name: '⬛ Hình vuông', desc: 'Diện tích = cạnh²', ex: 'Ví dụ: cạnh 5 cm → S = 5² = 25 cm²' },
+  { name: '▬ Hình chữ nhật', desc: 'Diện tích = dài × rộng', ex: 'Ví dụ: 8 cm × 3 cm = 24 cm²' },
+  { name: '⭕ Hình tròn', desc: 'Diện tích = π × r²', ex: 'Ví dụ: r = 4 cm → 3.14 × 16 ≈ 50.3 cm²' },
+  { name: '🔺 Tam giác', desc: 'Diện tích = (đáy × cao) ÷ 2', ex: 'Ví dụ: đáy 6, cao 4 → S = 12 cm²' },
+];
+let formulasBuilt = false;
+function buildFormulas() {
+  if (formulasBuilt) return;
+  formulasBuilt = true;
+  const fb = document.getElementById('formulaBox');
+  formulas.forEach((f, idx) => {
+    const c = document.createElement('div');
+    c.className = 'formula-chip';
+    c.textContent = f.name;
+    c.onclick = () => {
+      document.querySelectorAll('.formula-chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      document.getElementById('formulaDisplay').innerHTML =
+        `<div><div class="formula-name">${f.desc}</div><div class="formula-ex">${f.ex}</div></div>`;
+    };
+    fb.appendChild(c);
+  });
+}
+
+// ── Speed Quiz ──
+let speedAnswered = false;
+function buildSpeedQ() {
+  speedAnswered = false;
+  document.getElementById('speedMsg').textContent = '';
+  const ops = ['+', '-', '×'];
+  const op = ops[Math.floor(Math.random() * 3)];
+  let a = Math.floor(Math.random() * 9) + 2;
+  let b = Math.floor(Math.random() * 9) + 2;
+  let ans;
+  if (op === '+') ans = a + b;
+  else if (op === '-') { if (a < b) [a, b] = [b, a]; ans = a - b; }
+  else ans = a * b;
+  document.getElementById('speedQ').textContent = `${a} ${op} ${b} = ?`;
+  const opts = [ans];
+  while (opts.length < 4) {
+    const r = ans + Math.floor(Math.random() * 10) - 5;
+    if (r !== ans && r >= 0 && !opts.includes(r)) opts.push(r);
+  }
+  opts.sort(() => Math.random() - .5);
+  const oc = document.getElementById('speedOpts');
+  oc.innerHTML = '';
+  opts.forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'speed-btn';
+    b.textContent = o;
+    b.onclick = () => {
+      if (speedAnswered) return;
+      speedAnswered = true;
+      const msg = document.getElementById('speedMsg');
+      if (o === ans) {
+        b.classList.add('correct-ans');
+        msg.style.color = '#0d9373';
+        msg.textContent = '✅ Đúng rồi! Tuyệt vời!';
+      } else {
+        b.classList.add('wrong-ans');
+        msg.style.color = '#c0384f';
+        msg.textContent = `❌ Sai! Đáp án đúng là ${ans}`;
+        // highlight correct
+        document.querySelectorAll('.speed-btn').forEach(sb => {
+          if (parseInt(sb.textContent) === ans) sb.classList.add('correct-ans');
+        });
+      }
+      setTimeout(buildSpeedQ, 1800);
+    };
+    oc.appendChild(b);
+  });
+}
+
+// ── Init ──
+if (document.getElementById('multControls')) buildControls();
+if (document.getElementById('multTable')) buildMultTable(2);
+if (document.getElementById('quizMain')) initQuiz();
+</script>
+</body>
+</html>
